@@ -1,6 +1,6 @@
-﻿namespace UKParliament.CodeTest.Data;
+﻿namespace UKParliament.CodeTest.Services.Models;
 
-public class Person
+public class PersonModel
 {
     public int Id { get; set; }
 
@@ -11,7 +11,4 @@ public class Person
     public DateOnly DateOfBirth { get; set; }
 
     public int DepartmentId { get; set; }
-    public DateTime? CreatedOn { get; set; }
-    public DateTime? UpdatedOn { get; set; }
-    public Department Department { get; set; }
 }
