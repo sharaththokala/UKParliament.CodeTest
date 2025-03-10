@@ -23,8 +23,23 @@ public class PersonController : ControllerBase
 
     [Route("{id:int}")]
     [HttpGet]
-    public async Task<ActionResult<PersonModel>> GetById(int id)
+    public async Task<ActionResult<PersonViewModel>> GetById(int id)
     {
         return Ok(await _personService.GetPersonByIdAsync(id));
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] PersonAddModel person)
+    {
+        await _personService.AddPersonAsync(person);
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put([FromBody] PersonViewModel person, int id)
+    {
+        await _personService.UpdatePersonAsync(id, person);
+        return Ok();
+    }
+
 }
