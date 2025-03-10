@@ -1,33 +1,32 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace UKParliament.CodeTest.Services.Validations
+namespace UKParliament.CodeTest.Services.Validations;
+
+public class NotInFutureDateAttribute : ValidationAttribute
 {
-    public class NotInFutureDateAttribute : ValidationAttribute
+    public NotInFutureDateAttribute()
     {
-        public NotInFutureDateAttribute()
-        {
-            ErrorMessage = $"The date cannot be in the future.";
-        }
+        ErrorMessage = $"The date cannot be in the future.";
+    }
 
-        public NotInFutureDateAttribute(string errorMessage)
-        {
-            ErrorMessage = errorMessage;
-        }
+    public NotInFutureDateAttribute(string errorMessage)
+    {
+        ErrorMessage = errorMessage;
+    }
 
-        public override bool IsValid(object value)
+    public override bool IsValid(object? value)
+    {
+        if (value != null)
         {
-            if (value != null)
-            {
-                var inputValue = value.ToString();
+            var inputValue = value.ToString();
 
-                if(DateTime.TryParse(inputValue, out var inputDate) &&
-                    inputDate > DateTime.Today) {
-                    return false;
-                }
+            if(DateTime.TryParse(inputValue, out var inputDate) &&
+                inputDate > DateTime.Today) {
+                return false;
             }
-
-            return true;
         }
+
+        return true;
     }
 }

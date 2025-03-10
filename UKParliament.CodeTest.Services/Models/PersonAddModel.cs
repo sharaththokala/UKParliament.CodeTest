@@ -8,12 +8,12 @@ public class PersonAddModel
     [Required]
     [StringLength(100, ErrorMessage = "First Name length can't be more than 100.")]
     [ValidName]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
 
     [Required]
     [StringLength(100, ErrorMessage = "Last Name length can't be more than 100.")]
     [ValidName]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = string.Empty;
 
     [Required]
     [NotInFutureDate("Date Of Birth cannot be in future.")]

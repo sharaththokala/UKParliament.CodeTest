@@ -25,7 +25,7 @@ public class PersonService : IPersonService
         var person = await _peopleRepository.GetPersonByIdAsync(Id);
 
         if (person == null)
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(Id);
 
         return new PersonViewModel
         {
@@ -52,7 +52,7 @@ public class PersonService : IPersonService
         var personToUpdate = await _peopleRepository.GetPersonByIdAsync(Id);
 
         if (personToUpdate == null)
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(Id);
 
         personToUpdate.FirstName = person.FirstName;
         personToUpdate.LastName = person.LastName;

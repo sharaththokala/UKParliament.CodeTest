@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using UKParliament.CodeTest.Data;
 using UKParliament.CodeTest.Data.Repositories;
 using UKParliament.CodeTest.Services;
@@ -14,6 +15,9 @@ public class Program
         // Add services to the container.
 
         builder.Services.AddControllersWithViews();
+
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
 
         builder.Services.AddDbContext<PersonManagerContext>(op => op.UseInMemoryDatabase("PersonManager"));
 
@@ -41,6 +45,7 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+        app.UseExceptionHandler();
         app.UseStaticFiles();
         app.UseRouting();
         app.MapControllerRoute(
