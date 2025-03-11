@@ -18,11 +18,19 @@ export class PersonService {
     return this.http.get<PersonListItemModel[]>(this.url);
   }
 
+  getPersonById(id: number): Observable<PersonModel> {
+    return this.http.get<PersonModel>(`${this.url}/${id}`);
+  }
+
   getDepartments(): Observable<DepartmentModel[]> {
     return this.http.get<DepartmentModel[]>(this.getDepartmentUrl);
   }
 
   addPerson(data: PersonModel): Observable<any> {
     return this.http.post(this.url, data);
+  }
+
+  savePerson(data: PersonModel, id: number): Observable<any> {
+    return this.http.put(`${this.url}/${id}`, data);
   }
 }

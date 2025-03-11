@@ -4,7 +4,7 @@
         <div class="fw-bold">{{person.firstName}} {{person.lastName}}</div>
         <div class="text-muted">{{person.departmentName}}</div>
       </div>
-      <button class="btn btn-sm btn-outline-primary float-end" href="/create-person">
-        Edit</button>
+        <a class="btn btn-sm btn-outline-primary float-end" routerLink="/edit-person/{{person.id}}">
+            Edit</a>
     </li>
   </ul>

@@ -6,9 +6,9 @@ public interface IPersonService
 {
     public Task<ICollection<PersonListItemModel>> GetPeopleAsync();
 
-    public Task<PersonViewModel> GetPersonByIdAsync(int Id);
+    public Task<PersonModel> GetPersonByIdAsync(int Id);
 
-    public Task AddPersonAsync(PersonAddModel person);
+    public Task AddPersonAsync(PersonModel person);
 
     public Task UpdatePersonAsync(int Id, PersonViewModel person);
 }

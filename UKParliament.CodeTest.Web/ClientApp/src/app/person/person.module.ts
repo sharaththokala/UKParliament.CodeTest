@@ -6,16 +6,20 @@ import { PersonService } from './services/person.service';
 import { PersonFormComponent } from './components/person-form/person-form.component';
 import { AddPersonComponent } from './pages/add-person/add-person.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditPersonComponent } from './pages/edit-person/edit-person.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     PersonListComponent, 
     PersonManagementComponent, 
     PersonFormComponent,
-    AddPersonComponent],
+    AddPersonComponent,
+    EditPersonComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [PersonManagementComponent],
   providers: [PersonService]

@@ -23,13 +23,13 @@ public class PersonController : ControllerBase
 
     [Route("{id:int}")]
     [HttpGet]
-    public async Task<ActionResult<PersonViewModel>> GetById(int id)
+    public async Task<ActionResult<PersonModel>> GetById(int id)
     {
         return Ok(await _personService.GetPersonByIdAsync(id));
     }
     
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] PersonAddModel person)
+    public async Task<IActionResult> Post([FromBody] PersonModel person)
     {
         await _personService.AddPersonAsync(person);
         return Ok();

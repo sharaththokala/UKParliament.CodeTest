@@ -3,7 +3,7 @@ using UKParliament.CodeTest.Services.Validations;
 
 namespace UKParliament.CodeTest.Services.Models;
 
-public class PersonAddModel
+public class PersonModel
 {
     [Required]
     [StringLength(100, ErrorMessage = "First Name length can't be more than 100.")]

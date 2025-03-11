@@ -32,6 +32,9 @@ table {
     }
 }
 
+.btn[disabled] { 
+  cursor:not-allowed;
+}
 
 $primary: $colour-purple;
 
