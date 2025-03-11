@@ -1,6 +1,6 @@
 export interface PersonModel {
     firstName: string;
     lastName: string;
-    dob: Date;
+    dateOfBirth: Date;
     departmentId: number
 }

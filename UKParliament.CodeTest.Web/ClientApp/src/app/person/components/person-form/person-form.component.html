@@ -1,0 +1,87 @@
+<form [formGroup]="personForm">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <label for="firstName" class="col-xs-12 col-sm-4 col-md-3 col-xl-2 col-form-label">First name</label>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-xl-4">
+                    <input class="form-control" id="firstName" type="text" formControlName="firstName">
+                </div>
+                <div class="col-xs-12 col-md-3 validation-message">
+                    <div *ngIf="personForm.get('firstName')?.invalid && (personForm.get('firstName')?.dirty || personForm.get('firstName')?.touched)"
+                        class="messages text-danger">
+                        <div *ngIf="personForm.get('firstName')?.hasError('required')">Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <label for="lastName" class="col-xs-12 col-sm-4 col-md-3 col-xl-2 col-form-label">Last name</label>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-xl-4">
+                    <input class="form-control" formControlName="lastName">
+                </div>
+                <div class="col-xs-12 col-md-3 validation-message">
+                    <div *ngIf="personForm.get('lastName')?.invalid && (personForm.get('lastName')?.dirty || personForm.get('lastName')?.touched)"
+                        class="messages text-danger">
+                        <div *ngIf="personForm.get('lastName')?.hasError('required')">Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <label for="dateOfBirth" class="col-xs-12 col-sm-4 col-md-3 col-xl-2 col-form-label">Date of birth</label>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-xl-4">
+                    <input type="date" class="form-control" formControlName="dateOfBirth">
+                </div>
+                <div class="col-xs-12 col-md-3 validation-message">
+                    <div *ngIf="personForm.get('dateOfBirth')?.invalid && (personForm.get('dateOfBirth')?.dirty || personForm.get('dateOfBirth')?.touched)"
+                        class="messages text-danger">
+                        <div *ngIf="personForm.get('dateOfBirth')?.hasError('required')">Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="form-group row">
+                <label for="departmentId" class="col-xs-12 col-sm-4 col-md-3 col-xl-2 col-form-label">Department</label>
+                <div class="col-xs-12 col-sm-8 col-md-6 col-xl-4">
+                    <select formControlName="departmentId" class="form-control form-select">
+                        <option class="text-muted" value="">Select department</option>
+                        <option *ngFor="let dep of departments" [ngValue]="dep.id">{{dep.name}}</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-md-3 validation-message">
+                    <div *ngIf="personForm.get('departmentId')?.invalid && (personForm.get('departmentId')?.dirty || personForm.get('departmentId')?.touched)"
+                        class="messages text-danger">
+                        <div *ngIf="personForm.get('departmentId')?.hasError('required')">Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center mt-5">
+        <div class="btn-group" style="margin-right: 0.5rem!important;" role="group">
+            <button (click)="onFormCancel()" class="btn btn-sm btn-danger">
+                Cancel
+            </button>
+        </div>
+
+        <div class="btn-group" role="group">
+            <button (click)="onFormSubmit()" [disabled]="!personForm.valid || !personForm.dirty"
+                class="btn btn-sm btn-primary ml-4">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PersonModule } from './person/person.module';
 import { PersonManagementComponent } from './person/pages/person-management/person-management.component';
+import { AddPersonComponent } from './person/pages/add-person/add-person.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -17,6 +18,7 @@ import { PersonManagementComponent } from './person/pages/person-management/pers
         FormsModule,
         PersonModule,
         RouterModule.forRoot([
-            { path: '', component: PersonManagementComponent, pathMatch: 'full' }
+            { path: '', component: PersonManagementComponent, pathMatch: 'full' },
+            { path: 'add-person', component: AddPersonComponent }
         ])], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
