@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { PersonModule } from './person/person.module';
+import { PersonManagementComponent } from './person/pages/person-management/person-management.component';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -13,7 +15,8 @@ import { HomeComponent } from './components/home/home.component';
     ],
     bootstrap: [AppComponent], imports: [BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         FormsModule,
+        PersonModule,
         RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' }
+            { path: '', component: PersonManagementComponent, pathMatch: 'full' }
         ])], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

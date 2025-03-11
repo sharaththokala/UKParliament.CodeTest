@@ -31,3 +31,11 @@ table {
         min-width: 600px;
     }
 }
+
+
+$primary: $colour-purple;
+
+$theme-colors: (
+  "primary":    $primary,
+);
+@import '../node_modules/bootstrap/scss/bootstrap.scss';

@@ -1,0 +1,16 @@
+<div class="col">
+    <div class="card border-0 rounded-0">
+
+        <div class="card-body">
+            <div class="card-title clearfix">
+              <h5 class="d-inline-block">People management</h5>
+                    <button class="btn btn-sm btn-outline-primary float-end" href="/create-person">
+                        Add person</button>
+            </div>
+            <hr>
+            <div class="container">
+                <app-person-list [people]="people$ | async"></app-person-list>
+            </div>
+        </div>
+    </div>
+</div>
