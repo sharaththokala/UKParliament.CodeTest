@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UKParliament.CodeTest.Web.ViewModels;
+using UKParliament.CodeTest.Services;
+using UKParliament.CodeTest.Services.Models;
 
 namespace UKParliament.CodeTest.Web.Controllers;
 
@@ -7,10 +8,38 @@ namespace UKParliament.CodeTest.Web.Controllers;
 [Route("api/[controller]")]
 public class PersonController : ControllerBase
 {
+    private readonly IPersonService _personService;
+
+    public PersonController(IPersonService personService)
+    {
+        _personService = personService;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<PersonListItemModel>>> Get()
+    {
+        return Ok(await _personService.GetPeopleAsync());
+    }
+
     [Route("{id:int}")]
     [HttpGet]
-    public ActionResult<PersonViewModel> GetById(int id)
+    public async Task<ActionResult<PersonModel>> GetById(int id)
     {
-        return Ok(new PersonViewModel());
+        return Ok(await _personService.GetPersonByIdAsync(id));
     }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] PersonModel person)
+    {
+        await _personService.AddPersonAsync(person);
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put([FromBody] PersonViewModel person, int id)
+    {
+        await _personService.UpdatePersonAsync(id, person);
+        return Ok();
+    }
+
 }

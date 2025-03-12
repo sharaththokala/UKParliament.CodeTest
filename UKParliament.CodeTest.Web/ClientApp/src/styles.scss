@@ -31,3 +31,14 @@ table {
         min-width: 600px;
     }
 }
+
+.btn[disabled] { 
+  cursor:not-allowed;
+}
+
+$primary: $colour-purple;
+
+$theme-colors: (
+  "primary":    $primary,
+);
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
