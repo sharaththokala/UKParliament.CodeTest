@@ -22,10 +22,6 @@ export class PersonService {
     return this.http.get<PersonModel>(`${this.url}/${id}`);
   }
 
-  getDepartments(): Observable<DepartmentModel[]> {
-    return this.http.get<DepartmentModel[]>(this.getDepartmentUrl);
-  }
-
   addPerson(data: PersonModel): Observable<any> {
     return this.http.post(this.url, data);
   }

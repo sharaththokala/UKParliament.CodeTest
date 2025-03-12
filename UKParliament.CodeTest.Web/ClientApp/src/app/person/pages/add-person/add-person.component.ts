@@ -3,6 +3,7 @@ import { PersonService } from '../../services/person.service';
 import { Router } from '@angular/router';
 import { PersonModel } from '../../../../app/shared/interface/person-model';
 import { Observable } from 'rxjs';
+import { DepartmentService } from '../../services/department.service';
 
 @Component({
   selector: 'app-add-person',
@@ -11,13 +12,12 @@ import { Observable } from 'rxjs';
 })
 export class AddPersonComponent {
   departments$: Observable<any>;
-  constructor(private service: PersonService, private router: Router) {
-    this.departments$ = this.service.getDepartments();
+  constructor(private personService: PersonService, private departmentService: DepartmentService, private router: Router) {
+    this.departments$ = this.departmentService.getDepartments();
   }
 
   onFormSubmit(person: PersonModel) {
-    this.service.addPerson(person).subscribe(
-      res => {
+    this.personService.addPerson(person).subscribe(() => {
         this.router.navigate(['/']);
       }
     );

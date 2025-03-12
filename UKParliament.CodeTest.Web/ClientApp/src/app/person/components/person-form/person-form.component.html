@@ -10,6 +10,8 @@
                     <div *ngIf="personForm.get('firstName')?.invalid && (personForm.get('firstName')?.dirty || personForm.get('firstName')?.touched)"
                         class="messages text-danger">
                         <div *ngIf="personForm.get('firstName')?.hasError('required')">Required</div>
+                        <div *ngIf="personForm.get('firstName')?.hasError('max')">First Name can't be more than 100 chars</div>
+                        <div *ngIf="personForm.get('firstName')?.hasError('invalidName')">Invalid first Name</div>
                     </div>
                 </div>
             </div>
@@ -27,6 +29,8 @@
                     <div *ngIf="personForm.get('lastName')?.invalid && (personForm.get('lastName')?.dirty || personForm.get('lastName')?.touched)"
                         class="messages text-danger">
                         <div *ngIf="personForm.get('lastName')?.hasError('required')">Required</div>
+                        <div *ngIf="personForm.get('lastName')?.hasError('max')">Last Name can't be more than 100 chars</div>
+                        <div *ngIf="personForm.get('lastName')?.hasError('invalidName')">Invalid last Name</div>
                     </div>
                 </div>
             </div>
@@ -38,12 +42,13 @@
             <div class="form-group row">
                 <label for="dateOfBirth" class="col-xs-12 col-sm-4 col-md-3 col-xl-2 col-form-label">Date of birth</label>
                 <div class="col-xs-12 col-sm-8 col-md-6 col-xl-4">
-                    <input type="date" id="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+                    <input type="date" id="dateOfBirth" max="{{currentDate | date:'yyyy-MM-dd'}}" class="form-control" formControlName="dateOfBirth">
                 </div>
                 <div class="col-xs-12 col-md-3 validation-message">
                     <div *ngIf="personForm.get('dateOfBirth')?.invalid && (personForm.get('dateOfBirth')?.dirty || personForm.get('dateOfBirth')?.touched)"
                         class="messages text-danger">
                         <div *ngIf="personForm.get('dateOfBirth')?.hasError('required')">Required</div>
+                        <div *ngIf="personForm.get('dateOfBirth')?.hasError('greaterThanToday')">Date of birth cannot be in future</div>
                     </div>
                 </div>
             </div>

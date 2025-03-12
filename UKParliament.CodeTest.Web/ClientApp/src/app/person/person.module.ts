@@ -8,6 +8,7 @@ import { AddPersonComponent } from './pages/add-person/add-person.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditPersonComponent } from './pages/edit-person/edit-person.component';
 import { RouterModule } from '@angular/router';
+import { DepartmentService } from './services/department.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [PersonManagementComponent],
-  providers: [PersonService]
+  providers: [PersonService, DepartmentService]
 })
 export class PersonModule { }

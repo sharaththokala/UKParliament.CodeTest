@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonModel } from '../../../../app/shared/interface/person-model';
 import { DepartmentModel } from 'src/app/shared/interface/department-model';
+import { FutureDateValidator } from 'src/app/shared/validators/future.date.validator';
+import { InvalidNameValidator } from 'src/app/shared/validators/invalid.name.validator';
 
 @Component({
   selector: 'app-person-form',
@@ -15,13 +17,17 @@ export class PersonFormComponent implements OnChanges {
   @Output() formCancel: EventEmitter<any> = new EventEmitter();
   @Input() person!: PersonModel;
 
-  constructor(private formBuilder: FormBuilder) { }
+  currentDate: Date;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.currentDate = new Date();
+  }
 
   ngOnChanges() {
     this.personForm = this.formBuilder.group({
-      firstName: [this.person && this.person.firstName ? this.person.firstName : '', [Validators.required, Validators.max(100)]],
-      lastName: [this.person && this.person.lastName ? this.person.lastName : '', [Validators.required, Validators.max(100)]],
-      dateOfBirth: [this.person && this.person.dateOfBirth ? this.person.dateOfBirth : '', [Validators.required]],
+      firstName: [this.person && this.person.firstName ? this.person.firstName : '', [Validators.required, Validators.max(100), InvalidNameValidator.invalidName]],
+      lastName: [this.person && this.person.lastName ? this.person.lastName : '', [Validators.required, Validators.max(100), InvalidNameValidator.invalidName]],
+      dateOfBirth: [this.person && this.person.dateOfBirth ? this.person.dateOfBirth : '', [Validators.required, FutureDateValidator.greaterThanToday]],
       departmentId: [this.person && this.person.departmentId ? this.person.departmentId : '', [Validators.required]],
     });
 

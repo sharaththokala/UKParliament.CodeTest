@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { PersonService } from '../../services/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonModel } from '../../../../app/shared/interface/person-model';
+import { DepartmentService } from '../../services/department.service';
 
 @Component({
   selector: 'app-edit-person',
@@ -14,14 +15,14 @@ export class EditPersonComponent {
   person$: Observable<any>;
   id: number;
 
-  constructor(private service: PersonService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.departments$ = this.service.getDepartments();
+  constructor(private personService: PersonService, private departmentService: DepartmentService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.departments$ = this.departmentService.getDepartments();
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.person$ = this.service.getPersonById(this.id);
+    this.person$ = this.personService.getPersonById(this.id);
   }
 
    onFormSubmit(person: PersonModel) {
-      this.service.savePerson(person, this.id).subscribe(
+      this.personService.savePerson(person, this.id).subscribe(
         res => {
           this.router.navigate(['/']);
         }
