@@ -18,8 +18,8 @@ export class AddPersonComponent {
 
   onFormSubmit(person: PersonModel) {
     this.personService.addPerson(person).subscribe(() => {
-        this.router.navigate(['/']);
-      }
+      this.router.navigate(['/']);
+    }
     );
   }
 

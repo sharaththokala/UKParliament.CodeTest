@@ -3,49 +3,47 @@ using UKParliament.CodeTest.Data;
 using UKParliament.CodeTest.Data.Repositories;
 using Xunit;
 
-namespace UKParliament.CodeTest.Tests.Repositories
+namespace UKParliament.CodeTest.Tests.Repositories;
+
+public class PeopleRepositoryTests
 {
-    public class PeopleRepositoryTests
+    private IPeopleRepository peopleRepository;
+    private PersonManagerContext personManagerContext;
+
+    public PeopleRepositoryTests()
     {
-        private IPeopleRepository peopleRepository;
-        private PersonManagerContext personManagerContext;
-       
+        var dbOptions = new DbContextOptionsBuilder<PersonManagerContext>()
+         .UseInMemoryDatabase(databaseName: "person_db")
+         .Options;
 
-        public PeopleRepositoryTests()
-        {
-            var dbOptions = new DbContextOptionsBuilder<PersonManagerContext>()
-             .UseInMemoryDatabase(databaseName: "person_db")
-             .Options;
+        personManagerContext = new PersonManagerContext(dbOptions);
 
-            personManagerContext = new PersonManagerContext(dbOptions);
+        peopleRepository = new PeopleRepository(personManagerContext);
+    }
 
-            peopleRepository = new PeopleRepository(personManagerContext);
-        }
+    [Fact]
+    public async Task InsertPersonAsync_HasAuditDatesPopulated()
+    {
+        //Arrange
 
-        [Fact]
-        public async Task InsertPersonAsync_HasAuditDatesPopulated()
-        {
-            //Arrange
+        personManagerContext.Departments.Add(new Department { Id = 1, Name = "test" });
+        await personManagerContext.SaveChangesAsync();
 
-            personManagerContext.Departments.Add(new Department { Id = 1, Name = "test" });
-            await personManagerContext.SaveChangesAsync();
+        var personToAdd = new Person { FirstName = "sharath", LastName = "thokala", DepartmentId = 1, DateOfBirth = new DateOnly(1986, 02, 12) };
 
-            var personToAdd = new Person { FirstName = "sharath", LastName = "thokala", DepartmentId = 1, DateOfBirth = new DateOnly(1986, 02, 12) };
+        //Act
+        await peopleRepository.InsertPersonAsync(personToAdd);
 
-            //Act
-            await peopleRepository.InsertPersonAsync(personToAdd);
+        //Assert
+        var person = await personManagerContext.People.FirstAsync();
 
-            //Assert
-            var person = await personManagerContext.People.FirstAsync();
+        Assert.True(person.CreatedOn.HasValue);
+        Assert.True(person.UpdatedOn.HasValue);
+    }
 
-            Assert.True(person.CreatedOn.HasValue);
-            Assert.True(person.UpdatedOn.HasValue);
-        }
-
-        public void Dispose()
-        {
-            personManagerContext.Database.EnsureDeleted();
-            personManagerContext.Dispose();
-        }
+    public void Dispose()
+    {
+        personManagerContext.Database.EnsureDeleted();
+        personManagerContext.Dispose();
     }
 }

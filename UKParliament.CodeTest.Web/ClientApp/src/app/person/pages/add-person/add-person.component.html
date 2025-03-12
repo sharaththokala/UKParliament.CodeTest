@@ -6,7 +6,8 @@
             </div>
             <hr>
             <div class="container">
-                <app-person-form [departments]="departments$ | async" (formSubmit)="onFormSubmit($event)" (formCancel)="onFormCancel()"></app-person-form>
+                <app-person-form [departments]="departments$ | async" (formSubmit)="onFormSubmit($event)"
+                    (formCancel)="onFormCancel()"></app-person-form>
             </div>
         </div>
     </div>

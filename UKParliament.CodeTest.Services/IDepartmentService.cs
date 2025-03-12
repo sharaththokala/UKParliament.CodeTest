@@ -4,5 +4,5 @@ namespace UKParliament.CodeTest.Services;
 
 public interface IDepartmentService
 {
-   public Task<ICollection<DepartmentModel>> GetDepartments();
+    public Task<ICollection<DepartmentModel>> GetDepartments();
 }

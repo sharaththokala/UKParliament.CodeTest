@@ -12,7 +12,8 @@ import { EditPersonComponent } from './person/pages/edit-person/edit-person.comp
 import { GlobalErrorHandlerService } from './shared/services/global-error-handler.service';
 import { ErrorComponent } from './components/error/error.component';
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         ErrorComponent
     ],
@@ -20,12 +21,13 @@ import { ErrorComponent } from './components/error/error.component';
         FormsModule,
         PersonModule,
         RouterLink,
-        RouterModule.forRoot([
-            { path: '', component: PersonManagementComponent, pathMatch: 'full' },
-            { path: 'add-person', component: AddPersonComponent },
-            { path: 'edit-person/:id', component: EditPersonComponent },
-            { path: 'error-page', component: ErrorComponent },
-        ])], providers: [provideHttpClient(withInterceptorsFromDi()), {provide: ErrorHandler, useClass: GlobalErrorHandlerService}] })
+    RouterModule.forRoot([
+        { path: '', component: PersonManagementComponent, pathMatch: 'full' },
+        { path: 'add-person', component: AddPersonComponent },
+        { path: 'edit-person/:id', component: EditPersonComponent },
+        { path: 'error-page', component: ErrorComponent },
+    ])], providers: [provideHttpClient(withInterceptorsFromDi()), { provide: ErrorHandler, useClass: GlobalErrorHandlerService }]
+})
 export class AppModule { }
 
 

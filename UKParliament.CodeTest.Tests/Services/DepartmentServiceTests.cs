@@ -16,7 +16,7 @@ public class DepartmentServiceTests
         var repository = new Mock<IDepartmentRepository>();
 
         repository.Setup(x => x.GetDepartmentsAsync()).ReturnsAsync(
-            new []
+            new[]
             { new Department {Id = 1, Name = "test1" },
               new Department {Id = 2, Name ="test2"}
             });

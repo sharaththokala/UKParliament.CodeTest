@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace UKParliament.CodeTest.Services.Validations;
 
@@ -21,8 +20,9 @@ public class NotInFutureDateAttribute : ValidationAttribute
         {
             var inputValue = value.ToString();
 
-            if(DateTime.TryParse(inputValue, out var inputDate) &&
-                inputDate > DateTime.Today) {
+            if (DateTime.TryParse(inputValue, out var inputDate) &&
+                inputDate > DateTime.Today)
+            {
                 return false;
             }
         }

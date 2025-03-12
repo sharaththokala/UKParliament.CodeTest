@@ -41,6 +41,9 @@ public class PersonManagerContext : DbContext
             new Department { Id = 4, Name = "HR" });
 
         modelBuilder.Entity<Person>().HasData(
-           new Person { Id = 1, FirstName = "Sharath", LastName = "Thokala", DepartmentId = 1, DateOfBirth = new DateOnly(1986, 02, 12), CreatedOn = DateTime.UtcNow, UpdatedOn = DateTime.UtcNow });
+           new Person { Id = 1, FirstName = "Sharath", LastName = "Thokala", DepartmentId = 1, DateOfBirth = new DateOnly(1986, 02, 12), CreatedOn = DateTime.UtcNow, UpdatedOn = DateTime.UtcNow },
+           new Person { Id = 2, FirstName = "John", LastName = "Doe", DepartmentId = 2, DateOfBirth = new DateOnly(1990, 08, 17), CreatedOn = DateTime.UtcNow, UpdatedOn = DateTime.UtcNow },
+           new Person { Id = 3, FirstName = "Mike", LastName = "Smith", DepartmentId = 3, DateOfBirth = new DateOnly(1978, 02, 22), CreatedOn = DateTime.UtcNow, UpdatedOn = DateTime.UtcNow }
+           );
     }
 }

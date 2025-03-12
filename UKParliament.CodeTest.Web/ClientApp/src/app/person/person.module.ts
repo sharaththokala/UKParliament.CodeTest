@@ -12,8 +12,8 @@ import { DepartmentService } from './services/department.service';
 
 @NgModule({
   declarations: [
-    PersonListComponent, 
-    PersonManagementComponent, 
+    PersonListComponent,
+    PersonManagementComponent,
     PersonFormComponent,
     AddPersonComponent,
     EditPersonComponent],

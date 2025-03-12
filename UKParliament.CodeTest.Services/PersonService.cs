@@ -57,7 +57,7 @@ public class PersonService : IPersonService
         personToUpdate.LastName = person.LastName;
         personToUpdate.DepartmentId = person.DepartmentId;
         personToUpdate.DateOfBirth = person.DateOfBirth;
-       
+
         await _peopleRepository.UpdatePersonAsync(personToUpdate);
     }
 }

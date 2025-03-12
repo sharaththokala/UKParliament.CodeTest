@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace UKParliament.CodeTest.Services.Exceptions;
+﻿namespace UKParliament.CodeTest.Services.Exceptions;
 
 public class PersonNotFoundException : Exception
 {

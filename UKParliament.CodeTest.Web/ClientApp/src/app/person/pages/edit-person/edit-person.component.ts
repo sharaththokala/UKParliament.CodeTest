@@ -21,15 +21,14 @@ export class EditPersonComponent {
     this.person$ = this.personService.getPersonById(this.id);
   }
 
-   onFormSubmit(person: PersonModel) {
-      this.personService.savePerson(person, this.id).subscribe(
-        res => {
-          this.router.navigate(['/']);
-        }
-      );
-    }
-  
-    onFormCancel() {
+  onFormSubmit(person: PersonModel) {
+    this.personService.savePerson(person, this.id).subscribe(() => {
       this.router.navigate(['/']);
     }
+    );
+  }
+
+  onFormCancel() {
+    this.router.navigate(['/']);
+  }
 }

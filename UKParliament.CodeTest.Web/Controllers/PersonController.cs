@@ -27,7 +27,7 @@ public class PersonController : ControllerBase
     {
         return Ok(await _personService.GetPersonByIdAsync(id));
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] PersonModel person)
     {

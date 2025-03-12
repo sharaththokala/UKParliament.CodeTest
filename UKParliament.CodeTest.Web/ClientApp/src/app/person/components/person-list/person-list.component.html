@@ -1,10 +1,10 @@
 <ul class="list-group list-group list-group-flush">
-    <li *ngFor="let person of people" class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <div class="fw-bold">{{person.firstName}} {{person.lastName}}</div>
-        <div class="text-muted">{{person.departmentName}}</div>
-      </div>
-        <a class="btn btn-sm btn-outline-primary float-end" routerLink="/edit-person/{{person.id}}">
-           Edit</a>
-    </li>
-  </ul>
+  <li *ngFor="let person of people" class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+      <div class="fw-bold">{{person.firstName}} {{person.lastName}}</div>
+      <div class="text-muted">{{person.departmentName}}</div>
+    </div>
+    <a class="btn btn-sm btn-outline-primary float-end" routerLink="/edit-person/{{person.id}}">
+      Edit</a>
+  </li>
+</ul>

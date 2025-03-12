@@ -3,16 +3,14 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PersonListItemModel } from '../../../app/shared/interface/person-list-item-model';
 import { PersonModel } from '../../../app/shared/interface/person-model';
-import { DepartmentModel } from '../../../app/shared/interface/department-model';
 
 @Injectable()
 export class PersonService {
-  url: string = `https://localhost:44416/api/person`;
+  url: string;
 
-  getDepartmentUrl: string = `https://localhost:44416/api/department`;
-
-
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+    this.url = `${this.baseUrl}api/person`;
+  }
 
   getPeople(): Observable<PersonListItemModel[]> {
     return this.http.get<PersonListItemModel[]>(this.url);
@@ -23,7 +21,7 @@ export class PersonService {
   }
 
   addPerson(data: PersonModel): Observable<any> {
-    return this.http.post(this.url, data);
+    return this.http.post(`${this.url}`, data);
   }
 
   savePerson(data: PersonModel, id: number): Observable<any> {
